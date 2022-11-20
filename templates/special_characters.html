@@ -11,10 +11,28 @@
 <body>
 <main>
     <h1>Database onderzoek</h1>
-    <p>Klik op een van de onderstaande problemen om te kijken welke database rijen te maken hebben met het geselecteerde probleem.</p>
-    <ul>
-        <li><a href="/special_characters">Special characters</a></li>
-    </ul>
+    <p>Special characters:</p>
+    <table>
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Leerdoel</td>
+            <td>Vraag</td>
+            <td>Auteur</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr>
+            {% for field in row %}
+            <td>{{ field }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
 </main>
 </body>
+
 </html>

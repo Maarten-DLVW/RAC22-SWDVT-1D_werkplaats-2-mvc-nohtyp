@@ -1,5 +1,6 @@
 import os.path
 import sys
+import sqlite3
 
 from flask import Flask, render_template
 
@@ -16,6 +17,10 @@ FLASK_DEBUG = True
 app = Flask(__name__)
 # This command creates the "<application directory>/databases/testcorrect_vragen.db" path
 DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db')
+
+con = sqlite3.connect("databases/testcorrect_vragen.db", check_same_thread=False)
+
+cur = con.cursor()
 
 # Check if the database file exists. If not, create a demo database
 if not os.path.isfile(DATABASE_FILE):
@@ -46,6 +51,15 @@ def table_content(table_name=None):
         return render_template(
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
+
+
+@app.route("/special_characters")
+def special_characters():
+    cur.execute('SELECT * FROM vragen WHERE vraag LIKE "%<br>%" OR vraag LIKE "%&nbsp;%";')
+
+    return render_template(
+        "special_characters.html", rows=cur.fetchall()
+    )
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
