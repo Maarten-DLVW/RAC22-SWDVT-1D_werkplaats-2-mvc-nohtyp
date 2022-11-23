@@ -7,6 +7,11 @@
     <meta name="author" content="Rotterdam Academy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
 </head>
 <body>
 <main>
@@ -26,7 +31,12 @@
         <tr>
             <td>{{ row.0 }}</td>
             <td>{{ row.1 }}</td>
-            <td><textarea>{{ row.2 }}</textarea></td>
+            <td>
+                <form action="/special_characters/edit" method="POST">
+                    <textarea rows="3">{{ row.2 }}</textarea><br />
+                    <input type="submit" value="Opslaan" />
+                </form>
+            </td>
             <td>{{ row.3 }}</td>
         </tr>
         {% endfor %}
