@@ -32,8 +32,7 @@
             <td>{{ row.0 }}</td>
             <td>{{ row.1 }}</td>
             <td>
-                <form action="/special_characters/edit" method="POST">
-                    <input type="hidden" value="{{ row.0 }}" />
+                <form action="/special_characters/edit/{{ row.0 }}" method="POST">
                     <textarea rows="3">{{ row.2 }}</textarea><br />
                     <input type="submit" value="Opslaan" />
                 </form>
