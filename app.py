@@ -55,10 +55,9 @@ def table_content(table_name=None):
 
 @app.route("/special_characters")
 def special_characters():
-    cur.execute('SELECT * FROM vragen WHERE vraag LIKE "%<br>%" OR vraag LIKE "%&nbsp;%";')
-
+    rows, column_names = dbm.get_special_characters()
     return render_template(
-        "special_characters.html", rows=cur.fetchall()
+        "special_characters.html", rows=rows, columns=column_names
     )
 
 if __name__ == "__main__":

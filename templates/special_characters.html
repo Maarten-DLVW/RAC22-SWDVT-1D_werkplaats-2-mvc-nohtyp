@@ -20,10 +20,9 @@
     <table>
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Leerdoel</th>
-            <th>Vraag</th>
-            <th>Auteur</th>
+            {% for column in columns %}
+            <th>{{ column }}</th>
+            {% endfor %}
         </tr>
         </thead>
         <tbody>
