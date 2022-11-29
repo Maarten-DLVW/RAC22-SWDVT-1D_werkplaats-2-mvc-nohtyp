@@ -63,6 +63,7 @@ def login():
     return render_template('login.html')
 
 
+
 @app.route('/profile')
 def profile():
     if not g.user:
@@ -108,5 +109,3 @@ def table_content(table_name=None):
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
-
-
