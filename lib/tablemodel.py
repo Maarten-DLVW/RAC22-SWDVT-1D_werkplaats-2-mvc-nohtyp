@@ -1,7 +1,6 @@
 import os
 import sqlite3
 
-
 class DatabaseModel:
     """This class is a wrapper around the sqlite3 database. It provides a simple interface that maps methods
     to database queries. The only required parameter is the database file."""
@@ -22,17 +21,6 @@ class DatabaseModel:
     def get_table_content(self, table_name):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"SELECT * FROM {table_name}")
-        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
-        table_headers = [column_name[0] for column_name in cursor.description]
-        table_content = cursor.fetchall()
-
-        # Note that this method returns 2 variables!
-        return table_content, table_headers
-
-        # Given a table name, return the rows and column names
-    def get_special_characters(self):
-        cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f'SELECT * FROM vragen WHERE vraag LIKE "%<br>%" OR vraag LIKE "%&nbsp;%";')
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()

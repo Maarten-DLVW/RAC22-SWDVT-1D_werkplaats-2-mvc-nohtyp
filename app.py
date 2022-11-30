@@ -2,9 +2,10 @@ import os.path
 import sys
 import sqlite3
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 
 from lib.tablemodel import DatabaseModel
+from lib.questionmodel import QuestionModel
 from lib.demodatabase import create_demo_database
 
 # This demo glues a random database and the Flask framework. If the database file does not exist,
@@ -18,15 +19,12 @@ app = Flask(__name__)
 # This command creates the "<application directory>/databases/testcorrect_vragen.db" path
 DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db')
 
-con = sqlite3.connect("databases/testcorrect_vragen.db", check_same_thread=False)
-
-cur = con.cursor()
-
 # Check if the database file exists. If not, create a demo database
 if not os.path.isfile(DATABASE_FILE):
     print(f"Could not find database {DATABASE_FILE}, creating a demo database.")
     create_demo_database(DATABASE_FILE)
 dbm = DatabaseModel(DATABASE_FILE)
+qm = QuestionModel(DATABASE_FILE)
 
 # Main route that shows a list of tables in the database
 # Note the "@app.route" decorator. This might be a new concept for you.
@@ -52,10 +50,16 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
 
-
-@app.route("/special_characters")
+# Show special characters on page
+@app.route("/special_characters", methods=['GET', 'POST'])
 def special_characters():
-    rows, column_names = dbm.get_special_characters()
+    if request.method == 'POST':
+        id = request.form['id']
+        question = request.form['question']
+        qm.editSpecialCharacters(id, question)
+        return redirect(url_for('special_characters'))
+
+    rows, column_names = qm.getAllSpecialCharacters()
     return render_template(
         "special_characters.html", rows=rows, columns=column_names
     )
