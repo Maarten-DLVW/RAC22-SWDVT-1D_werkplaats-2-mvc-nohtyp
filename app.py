@@ -7,7 +7,7 @@ from flask import  ( Flask, g , redirect, render_template, request, session, url
 from lib.tablemodel import DatabaseModel
 from lib.demodatabase import create_demo_database
 
-# This demo glues a random database and the Flask framework. If the database file does not exist,
+
 # a simple demo dataset will be created.
 LISTEN_ALL = "0.0.0.0"
 FLASK_IP = LISTEN_ALL
@@ -56,7 +56,7 @@ def login():
         user = [x for x in users if x.username == username][0]
         if user and user.password == password:
             session['user_id'] = user.id
-            return redirect(url_for('profile'))
+            return redirect(url_for('index'))
     
         return redirect(url_for('login'))
 
@@ -90,6 +90,8 @@ dbm = DatabaseModel(DATABASE_FILE)
 # concept in Python.
 @app.route("/")
 def index():
+    if not g.user:
+        return redirect(url_for('login'))
     tables = dbm.get_table_list()
     return render_template(
         "tables.html", table_list=tables, database_file=DATABASE_FILE
@@ -99,6 +101,8 @@ def index():
 # The table route displays the content of a table
 @app.route("/table_details/<table_name>")
 def table_content(table_name=None):
+    if not g.user:
+        return redirect(url_for('login'))
     if not table_name:
         return "Missing table name", 400  # HTTP 400 = Bad Request
     else:
