@@ -42,7 +42,7 @@ def before_request():
     if 'user_id' in session:
             user = [x for x in users if x.id == session['user_id']][0]
             g.user = user
-      
+
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -96,6 +96,7 @@ def index():
     return render_template(
         "tables.html", table_list=tables, database_file=DATABASE_FILE
     )
+    
 
 
 # The table route displays the content of a table
@@ -110,6 +111,7 @@ def table_content(table_name=None):
         return render_template(
             "table_details.html", rows=rows, columns=column_names, table_name=table_name
         )
+
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
