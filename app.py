@@ -1,7 +1,7 @@
 import os.path
 import sys
 
-from flask import  ( Flask, render_template, g , redirect, render_template, request, session, url_for )
+from flask import  ( Flask, g , redirect, render_template, request, session, url_for )
     
 
 from lib.tablemodel import DatabaseModel
@@ -38,18 +38,18 @@ app.secret_key = 'geheimekey'
 def before_request():
     g.user = None
 
+
+    if 'user_id' in session:
+            user = [x for x in users if x.id == session['user_id']][0]
+            g.user = user
       
 
-
-
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
-    if 'user_id' in session:
-        user = [x for x in users if x.id == session['user_id']][0]
-        g.user = user
+
     if request.method == 'POST':
         session.pop('user_id', None)
-
+        
         username = request.form['username']
         password = request.form['password']
         
