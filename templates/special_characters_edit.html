@@ -18,7 +18,7 @@
     <h1>Database onderzoek</h1>
     <p>Vraag {{ id }} bewerken:</p>
     <form method="POST">
-        <input type="hidden" name="id" />
+        <input type="hidden" name="id" value="{{ id }}" />
         <textarea name="question" rows="10" cols="100">{{ question }}</textarea>
         <input type="submit" value="Opslaan" />
     </form>
