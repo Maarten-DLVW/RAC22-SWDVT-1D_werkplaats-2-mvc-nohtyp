@@ -22,3 +22,16 @@ class QuestionModel:
         cursor = conn.cursor()
         cursor.execute(f'UPDATE vragen SET vraag = ? WHERE id = ?', (question, id))
         conn.commit()
+
+    # Get question with specific id from db
+    def getSpecificQuestion(self, id):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT id, vraag FROM vragen WHERE id = ?', (id))
+        data = cursor.fetchone()
+        result = []
+
+        for i in data:
+            result.append(i)
+
+        return result

@@ -51,17 +51,24 @@ def table_content(table_name=None):
         )
 
 # Show special characters on page
-@app.route("/special_characters", methods=['GET', 'POST'])
+@app.route("/special_characters")
 def special_characters():
+    rows, column_names = qm.getAllSpecialCharacters()
+    return render_template(
+        "special_characters.html", rows=rows, columns=column_names
+    )
+
+@app.route("/special_characters/edit/<id>", methods=['GET', 'POST'])
+def special_characters_edit(id=None):
     if request.method == 'POST':
         id = request.form['id']
         question = request.form['question']
         qm.editSpecialCharacters(id, question)
         return redirect(url_for('special_characters'))
 
-    rows, column_names = qm.getAllSpecialCharacters()
+    id, question = qm.getSpecificQuestion(id)
     return render_template(
-        "special_characters.html", rows=rows, columns=column_names
+        "special_characters_edit.html", id=id, question=question
     )
 
 if __name__ == "__main__":
