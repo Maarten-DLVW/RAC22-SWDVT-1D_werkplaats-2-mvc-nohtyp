@@ -44,3 +44,12 @@ class QuestionModel:
         table_content = cursor.fetchall()
 
         return table_content, table_headers
+
+    # Get question row with specific id from db
+    def getSpecificQuestionRow(self, id):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT id, leerdoel, vraag, auteur FROM vragen WHERE id = ?', (id))
+        result = cursor.fetchone()
+
+        return result
