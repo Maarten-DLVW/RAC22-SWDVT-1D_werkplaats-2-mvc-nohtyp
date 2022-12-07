@@ -142,7 +142,7 @@ def special_characters_edit(id=None):
 
 # Show null values on page
 @app.route("/null_values")
-def special_characters():
+def null_values():
     if not g.user:
         return redirect(url_for('login'))
     rows, column_names = qm.getAllNullValues()
