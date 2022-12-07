@@ -118,6 +118,8 @@ def table_content(table_name=None):
 # Show special characters on page
 @app.route("/special_characters")
 def special_characters():
+    if not g.user:
+        return redirect(url_for('login'))
     rows, column_names = qm.getAllSpecialCharacters()
     return render_template(
         "special_characters.html", rows=rows, columns=column_names
@@ -125,6 +127,8 @@ def special_characters():
 
 @app.route("/special_characters/edit/<id>", methods=['GET', 'POST'])
 def special_characters_edit(id=None):
+    if not g.user:
+        return redirect(url_for('login'))
     if request.method == 'POST':
         id = request.form['id']
         question = request.form['question']
