@@ -28,11 +28,7 @@ class QuestionModel:
         conn = sqlite3.connect(self.database_file)
         cursor = conn.cursor()
         cursor.execute(f'SELECT id, vraag FROM vragen WHERE id = ?', (id))
-        data = cursor.fetchone()
-        result = []
-
-        for i in data:
-            result.append(i)
+        result = cursor.fetchone()
 
         return result
 
@@ -53,3 +49,10 @@ class QuestionModel:
         result = cursor.fetchone()
 
         return result
+
+    # Edit null values
+    def editNullValues(self, id, learningGoal, question, author):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'UPDATE vragen SET learningGoal = ? AND vraag = ? AND auteur = ? WHERE id = ?', (learningGoal, question, author, id))
+        conn.commit()
