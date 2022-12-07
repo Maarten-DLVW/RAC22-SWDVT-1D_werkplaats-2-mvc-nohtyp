@@ -35,3 +35,12 @@ class QuestionModel:
             result.append(i)
 
         return result
+
+    # Get all null values from db
+    def getAllNullValues(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f'SELECT id, vraag, auteur, leerdoel FROM vragen WHERE vraag IS NULL OR auteur IS NULL OR leerdoel IS NULL;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
