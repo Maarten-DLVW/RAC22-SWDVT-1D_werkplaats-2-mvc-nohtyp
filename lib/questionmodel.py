@@ -54,5 +54,5 @@ class QuestionModel:
     def editNullValues(self, id, learningGoal, question, author):
         conn = sqlite3.connect(self.database_file)
         cursor = conn.cursor()
-        cursor.execute(f'UPDATE vragen SET learningGoal = ? AND vraag = ? AND auteur = ? WHERE id = ?', (learningGoal, question, author, id))
+        cursor.execute(f'UPDATE vragen SET leerdoel = ? AND vraag = ? AND auteur = ? WHERE id = ?', (learningGoal, question, author, id))
         conn.commit()
