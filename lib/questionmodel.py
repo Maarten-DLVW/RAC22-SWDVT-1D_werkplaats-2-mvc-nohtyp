@@ -49,7 +49,7 @@ class QuestionModel:
     def getSpecificQuestionRow(self, id):
         conn = sqlite3.connect(self.database_file)
         cursor = conn.cursor()
-        cursor.execute(f'SELECT id, leerdoel, vraag, auteur FROM vragen WHERE id = ?', (id))
+        cursor.execute(f'SELECT id, leerdoel, vraag, auteur FROM vragen WHERE id = ?', (id,))
         result = cursor.fetchone()
 
         return result
