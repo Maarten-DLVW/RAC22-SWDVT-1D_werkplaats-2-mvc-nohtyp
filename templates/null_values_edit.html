@@ -21,11 +21,11 @@
     <form method="POST">
         <input type="hidden" name="id" value="{{ id }}" />
         <label for="learningGoal">Leerdoel</label><br />
-        <input type="text" name="learningGoal" value="{{ learningGoal }}" id="learningGoal" /><br />
+        <input type="number" name="learningGoal" value="{{ learningGoal }}" id="learningGoal" /><br />
         <label for="question">Vraag</label>
         <textarea name="question" rows="10" cols="100" id="question">{{ question }}</textarea>
         <label for="author">Auteur</label><br />
-        <input type="text" name="author" value="{{ author }}" id="author" /><br />
+        <input type="number" name="author" value="{{ author }}" id="author" /><br />
         <input type="submit" value="Opslaan" />
     </form>
 </main>
