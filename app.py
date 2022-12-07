@@ -147,8 +147,8 @@ def null_values():
         return redirect(url_for('login'))
     rows, column_names = qm.getAllNullValues()
     kwargs = {
-        rows: rows,
-        columns: column_names
+        "rows": rows,
+        "columns": column_names
     }
     return render_template("null_values.html", **kwargs)
 
