@@ -125,6 +125,7 @@ def special_characters():
         "special_characters.html", rows=rows, columns=column_names
     )
 
+# Show special characters on edit page
 @app.route("/special_characters/edit/<id>", methods=['GET', 'POST'])
 def special_characters_edit(id=None):
     if not g.user:
@@ -151,6 +152,27 @@ def null_values():
         "columns": column_names
     }
     return render_template("null_values.html", **kwargs)
+
+
+# Show null values on edit page
+@app.route("/null_values/edit/<id>", methods=['GET', 'POST'])
+def null_values_edit(id=None):
+    if not g.user:
+        return redirect(url_for('login'))
+    if request.method == 'POST':
+        id = request.form['id']
+        question = request.form['question']
+        qm.editNullValues(id, question)
+        return redirect(url_for('null_values'))
+
+    id, learningGoal, question, author = qm.getSpecificQuestionRow(id)
+    kwargs = {
+        "id": id,
+        "learningGoal": learningGoal,
+        "question": question,
+        "author": author
+    }
+    return render_template("null_values_edit.html", **kwargs)
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
