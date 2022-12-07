@@ -140,5 +140,17 @@ def special_characters_edit(id=None):
         "special_characters_edit.html", id=id, question=question
     )
 
+# Show null values on page
+@app.route("/null_values")
+def special_characters():
+    if not g.user:
+        return redirect(url_for('login'))
+    rows, column_names = qm.getAllNullValues()
+    kwargs = {
+        rows: rows,
+        columns: column_names
+    }
+    return render_template("null_values.html", **kwargs)
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
