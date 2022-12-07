@@ -161,9 +161,9 @@ def null_values_edit(id=None):
         return redirect(url_for('login'))
     if request.method == 'POST':
         id = request.form['id']
-        learningGoal = request.form['learningGoal']
+        learningGoal = int(request.form['learningGoal'])
         question = request.form['question']
-        author = request.form['author']
+        author = int(request.form['author'])
         qm.editNullValues(id, learningGoal, question, author)
         return redirect(url_for('null_values'))
 
