@@ -12,33 +12,36 @@
 <main>
     <h1>Database onderzoek</h1>
     <a href="/">Terug</a>
-    <p>Data types wijzigen:</p>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Datatype</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for row in result %}
-        <tr>
-            <td>{{ row.1 }}</td>
-            <td>
-                <select name="{{ row.1 }}">
-                    <option value="integer"{% if row.2 == 'integer' %} selected="selected"{% endif %}>Integer</option>
-                    <option value="varchar"{% if row.2 == 'varchar' %} selected="selected"{% endif %}>Varchar</option>
-                    <option value="char"{% if row.2 == 'char' %} selected="selected"{% endif %}>Char</option>
-                    <option value="text"{% if row.2 == 'text' %} selected="selected"{% endif %}>Text</option>
-                    <option value="date"{% if row.2 == 'date' %} selected="selected"{% endif %}>Date</option>
-                    <option value="datetime"{% if row.2 == 'datetime' %} selected="selected"{% endif %}>Datetime</option>
-                    <option value="time"{% if row.2 == 'time' %} selected="selected"{% endif %}>Time</option>
-                </select>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <p>Data types wijzigen van de vragen tabel:</p>
+    <form action="/data_types/handle_edit" method="POST">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Datatype</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in result %}
+            <tr>
+                <td>{{ row.1 }}</td>
+                <td>
+                    <select name="{{ row.1 }}">
+                        <option value="integer"{% if row.2 == 'integer' %} selected="selected"{% endif %}>Integer</option>
+                        <option value="varchar"{% if row.2 == 'varchar' %} selected="selected"{% endif %}>Varchar</option>
+                        <option value="char"{% if row.2 == 'char' %} selected="selected"{% endif %}>Char</option>
+                        <option value="text"{% if row.2 == 'text' %} selected="selected"{% endif %}>Text</option>
+                        <option value="date"{% if row.2 == 'date' %} selected="selected"{% endif %}>Date</option>
+                        <option value="datetime"{% if row.2 == 'datetime' %} selected="selected"{% endif %}>Datetime</option>
+                        <option value="time"{% if row.2 == 'time' %} selected="selected"{% endif %}>Time</option>
+                    </select>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value="Opslaan" />
+    </form>
 </main>
 </body>
 </html>
