@@ -56,3 +56,19 @@ class QuestionModel:
         cursor = conn.cursor()
         cursor.execute(f'UPDATE vragen SET leerdoel = ?, vraag = ?, auteur = ? WHERE id = ?', (learningGoal, question, author, id))
         conn.commit()
+
+    # Get all columns from db
+    def getAuthors(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f'SELECT * FROM `auteurs`')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
+
+    # Edit collaborator in author table
+    def editAuthor(self, id, collaborator):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'UPDATE auteurs SET medewerker = ? WHERE id = ?', (collaborator, id))
+        conn.commit()

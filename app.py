@@ -176,5 +176,37 @@ def null_values_edit(id=None):
     }
     return render_template("null_values_edit.html", **kwargs)
 
+
+# Show data types on page
+@app.route("/data_types")
+def data_types():
+    if not g.user:
+        return redirect(url_for('login'))
+    rows, column_names = qm.getAuthors()
+    kwargs = {
+        "rows": rows,
+        "columns": column_names
+    }
+    return render_template("data_types.html", **kwargs)
+
+# Show data types on page
+@app.route("/data_types/edit/<id>")
+def data_types_edit(id=None):
+    if not g.user:
+        return redirect(url_for('login'))
+
+    return render_template("data_types_edit.html", id=id)
+
+@app.route("/data_types/edit/handle/<id>", methods=['GET', 'POST'])
+def data_types_edit_handle(id=None):
+    if not g.user:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        id = request.form['id']
+        collaborator = request.form['collaborator']
+        qm.editAuthor(id, collaborator)
+        return redirect(url_for('data_types'))
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

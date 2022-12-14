@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Vraag bewerken</title>
+    <meta name="description" content="Simple database display"/>
+    <meta name="author" content="Rotterdam Academy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Database onderzoek</h1>
+    <a href="/data_types">Terug</a>
+    <p>Auteur {{ id }} bewerken:</p>
+    <form method="POST" action="/data_types/edit/handle/{{ id }}">
+        <input type="hidden" name="id" value="{{ id }}" />
+        <label for="collaborator">Medewerker</label><br />
+        <select name="collaborator" id="collaborator">
+            <option value="">Kies een waarde</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+        </select><br />
+        <input type="submit" value="Opslaan" />
+    </form>
+</main>
+</body>
+</html>
