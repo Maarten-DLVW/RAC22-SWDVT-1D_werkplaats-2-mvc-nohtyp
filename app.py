@@ -182,20 +182,20 @@ def null_values_edit(id=None):
 def data_types():
     if not g.user:
         return redirect(url_for('login'))
-    result = qm.getColumns()
+    rows, column_names = qm.getAuthors()
     kwargs = {
-        "result": result
+        "rows": rows,
+        "columns": column_names
     }
     return render_template("data_types.html", **kwargs)
 
-# Route for data types edit handle
-@app.route("/data_types/handle_edit/<id>")
-def data_types_edit():
-    if request.method == 'POST':
-        type = int(request.form['type'])
-        name = request.form['name']
-        qm.editDataTypes(type, name)
-        return redirect(url_for('data_types'))
+# Show data types on page
+@app.route("/data_types/edit/<id>")
+def data_types_edit(id=None):
+    if not g.user:
+        return redirect(url_for('login'))
+
+    return render_template("data_types_edit.html")
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

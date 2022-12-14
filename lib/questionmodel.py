@@ -58,16 +58,17 @@ class QuestionModel:
         conn.commit()
 
     # Get all columns from db
-    def getColumns(self):
+    def getAuthors(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f'PRAGMA table_info(vragen);')
-        result = cursor.fetchall()
+        cursor.execute(f'SELECT * FROM `auteurs`')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
 
-        return result
+        return table_content, table_headers
 
     # Edit datatypes for 'vragen' table
     def editDataTypes(self, type, name):
         conn = sqlite3.connect(self.database_file)
         cursor = conn.cursor()
-        cursor.execute(f'ALTER TABLE vragen MODIFY ? ?', (name, type))
+        cursor.execute(f'ALTER TABLE vragen ALTER COLUMN ? ?', (name, type))
         conn.commit()

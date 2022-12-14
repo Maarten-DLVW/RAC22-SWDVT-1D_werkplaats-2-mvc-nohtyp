@@ -12,38 +12,30 @@
 <main>
     <h1>Database onderzoek</h1>
     <a href="/">Terug</a>
-    <p>Data types wijzigen van de vragen tabel:</p>
-    <form action="/data_types/handle_edit" method="POST">
-        <input type="hidden" value="{{ row.1 }}" name="name" />
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Datatype</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for row in result %}
-            <tr>
-                <td>{{ row.1 }}</td>
-                <td>
-                    <select name="{{ row.1 }}">
-                        <option value="integer"{% if row.2 == 'integer' %} selected="selected"{% endif %}>Integer</option>
-                        <option value="varchar"{% if row.2 == 'varchar' %} selected="selected"{% endif %}>Varchar</option>
-                        <option value="char"{% if row.2 == 'char' %} selected="selected"{% endif %}>Char</option>
-                        <option value="text"{% if row.2 == 'text' %} selected="selected"{% endif %}>Text</option>
-                        <option value="date"{% if row.2 == 'date' %} selected="selected"{% endif %}>Date</option>
-                        <option value="datetime"{% if row.2 == 'datetime' %} selected="selected"{% endif %}>Datetime</option>
-                        <option value="time"{% if row.2 == 'time' %} selected="selected"{% endif %}>Time</option>
-                    </select>
-                </td>
-                <td><input type="submit" value="Opslaan" /></td>
-            </tr>
+    <p>Datatype wijzigen van 'medewerker' en 'met pensioen' kolom in 'auteur' tabel:</p>
+    <table>
+        <thead>
+        <tr>
+            {% for column in columns %}
+            <th>{{ column }}</th>
             {% endfor %}
-            </tbody>
-        </table>
-    </form>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row.0 }}</td>
+            <td>{{ row.1 }}</td>
+            <td>{{ row.2 }}</td>
+            <td>{{ row.3 }}</td>
+            <td>{{ row.4 }}</td>
+            <td>{{ row.5 }}</td>
+            <td><a href="/data_types/edit/{{ row.0 }}">Bewerken</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </main>
 </body>
 </html>
