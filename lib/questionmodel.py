@@ -65,10 +65,3 @@ class QuestionModel:
         table_content = cursor.fetchall()
 
         return table_content, table_headers
-
-    # Edit datatypes for 'vragen' table
-    def editDataTypes(self, type, name):
-        conn = sqlite3.connect(self.database_file)
-        cursor = conn.cursor()
-        cursor.execute(f'ALTER TABLE vragen ALTER COLUMN ? ?', (name, type))
-        conn.commit()
