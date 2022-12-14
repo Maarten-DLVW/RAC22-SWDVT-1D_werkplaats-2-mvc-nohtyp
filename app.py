@@ -205,7 +205,7 @@ def data_types_edit_handle(id=None):
     if request.method == 'POST':
         id = request.form['id']
         collaborator = request.form['collaborator']
-        qm.editNullValues(id, collaborator)
+        qm.editAuthor(id, collaborator)
         return redirect(url_for('data_types'))
 
 if __name__ == "__main__":

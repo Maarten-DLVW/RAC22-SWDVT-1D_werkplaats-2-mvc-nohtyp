@@ -65,3 +65,10 @@ class QuestionModel:
         table_content = cursor.fetchall()
 
         return table_content, table_headers
+
+    # Edit collaborator in author table
+    def editAuthor(self, id, collaborator):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'UPDATE auteurs SET medewerker = ? WHERE id = ?', (collaborator, id))
+        conn.commit()
