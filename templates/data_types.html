@@ -24,7 +24,17 @@
         {% for row in result %}
         <tr>
             <td>{{ row.1 }}</td>
-            <td><a href="/data_types/edit/{{ row.0 }}">{{ row.2 }}</td>
+            <td>
+                <select name="datatype">
+                    <option value="INTEGER" {% if row.2 is INTEGER %} selected {% endif %}>INTEGER</option>
+                    <option value="VARCHAR" {% if row.2 is VARCHAR %} selected {% endif %}>VARCHAR</option>
+                    <option value="CHAR" {% if row.2 is CHAR %} selected {% endif %}>CHAR</option>
+                    <option value="TEXT" {% if row.2 is TEXT %} selected {% endif %}>TEXT</option>
+                    <option value="DATE" {% if row.2 is DATE %} selected {% endif %}>DATE</option>
+                    <option value="DATETIME" {% if row.2 is DATETIME %} selected {% endif %}>DATETIME</option>
+                    <option value="TIME" {% if row.2 is TIME %} selected {% endif %}>TIME</option>
+                </select>
+            </td>
         </tr>
         {% endfor %}
         </tbody>
