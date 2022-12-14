@@ -192,9 +192,9 @@ def data_types():
 @app.route("/data_types/handle_edit/<id>")
 def data_types_edit():
     if request.method == 'POST':
-        id = request.form['id']
         type = int(request.form['type'])
-        qm.editDataTypes(id, type)
+        name = request.form['name']
+        qm.editDataTypes(type, name)
         return redirect(url_for('data_types'))
 
 if __name__ == "__main__":

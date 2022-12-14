@@ -66,5 +66,8 @@ class QuestionModel:
         return result
 
     # Edit datatypes for 'vragen' table
-    def editDataTypes(self, id, type):
-        
+    def editDataTypes(self, type, name):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'ALTER TABLE vragen MODIFY ? ?', (name, type))
+        conn.commit()
