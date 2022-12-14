@@ -64,3 +64,7 @@ class QuestionModel:
         result = cursor.fetchall()
 
         return result
+
+    # Edit datatypes for 'vragen' table
+    def editDataTypes(self, id, type):
+        

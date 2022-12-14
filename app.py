@@ -188,5 +188,14 @@ def data_types():
     }
     return render_template("data_types.html", **kwargs)
 
+# Route for data types edit handle
+@app.route("/data_types/handle_edit/<id>")
+def data_types_edit():
+    if request.method == 'POST':
+        id = request.form['id']
+        type = int(request.form['type'])
+        qm.editDataTypes(id, type)
+        return redirect(url_for('data_types'))
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

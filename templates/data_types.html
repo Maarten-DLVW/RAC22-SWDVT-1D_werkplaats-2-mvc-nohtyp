@@ -14,11 +14,13 @@
     <a href="/">Terug</a>
     <p>Data types wijzigen van de vragen tabel:</p>
     <form action="/data_types/handle_edit" method="POST">
+        <input type="hidden" value="{{ row.0 }}" name="id" />
         <table>
             <thead>
             <tr>
                 <th>Name</th>
                 <th>Datatype</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -36,11 +38,11 @@
                         <option value="time"{% if row.2 == 'time' %} selected="selected"{% endif %}>Time</option>
                     </select>
                 </td>
+                <td><input type="submit" value="Opslaan" /></td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
-        <input type="submit" value="Opslaan" />
     </form>
 </main>
 </body>
