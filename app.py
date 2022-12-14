@@ -176,5 +176,13 @@ def null_values_edit(id=None):
     }
     return render_template("null_values_edit.html", **kwargs)
 
+
+# Show null values on page
+@app.route("/data_types")
+def data_types():
+    if not g.user:
+        return redirect(url_for('login'))
+    return render_template("data_types.html")
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
