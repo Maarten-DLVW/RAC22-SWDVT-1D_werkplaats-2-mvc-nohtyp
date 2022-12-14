@@ -5,7 +5,7 @@
 :root{
 --sans: 1em/1.6 system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, Fira Sans, sans-serif;
 --mono: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, 'Courier New', monospace;
---c1:#0074d9;
+--c1:#fff;
 --c2:#eee;
 --c3:#fff;
 --c4:#000;
@@ -140,7 +140,7 @@ section>section {
     margin-top: 20px;
 }
 .buttonstyle_green:hover {
-	background-color:#4cee6c;
+	background-color:rgb(72, 224, 102);
     text-decoration-color: #000;
 }
 .buttonstyle_green:active {
