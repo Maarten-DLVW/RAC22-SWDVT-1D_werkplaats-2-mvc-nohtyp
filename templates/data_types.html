@@ -16,16 +16,15 @@
     <table>
         <thead>
         <tr>
-            {% for column in columns %}
-            <th>{{ column }}</th>
-            {% endfor %}
+            <th>name</th>
+            <th>type</th>
         </tr>
         </thead>
         <tbody>
-        {% for row in rows %}
+        {% for row in result %}
         <tr>
-            <td>{{ row.0 }}</td>
             <td>{{ row.1 }}</td>
+            <td><a href="/data_types/edit/{{ row.0 }}">{{ row.2 }}</td>
         </tr>
         {% endfor %}
         </tbody>

@@ -60,8 +60,7 @@ class QuestionModel:
     # Get all columns from db
     def getColumns(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f'PRAGMA pragma_name;')
-        table_headers = [column_name[0] for column_name in cursor.description]
-        table_content = cursor.fetchall()
+        cursor.execute(f'PRAGMA table_info(vragen);')
+        result = cursor.fetchall()
 
-        return table_content, table_headers
+        return result
