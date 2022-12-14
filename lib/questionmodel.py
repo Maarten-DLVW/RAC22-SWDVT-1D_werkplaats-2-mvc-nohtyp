@@ -27,7 +27,7 @@ class QuestionModel:
     def getSpecificQuestion(self, id):
         conn = sqlite3.connect(self.database_file)
         cursor = conn.cursor()
-        cursor.execute(f'SELECT id, vraag FROM vragen WHERE id = ?', (id))
+        cursor.execute(f'SELECT id, vraag FROM vragen WHERE id = ?', (id,))
         result = cursor.fetchone()
 
         return result
