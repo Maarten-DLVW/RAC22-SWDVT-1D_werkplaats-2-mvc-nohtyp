@@ -56,3 +56,12 @@ class QuestionModel:
         cursor = conn.cursor()
         cursor.execute(f'UPDATE vragen SET leerdoel = ?, vraag = ?, auteur = ? WHERE id = ?', (learningGoal, question, author, id))
         conn.commit()
+
+    # Get all columns from db
+    def getColumns(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f'PRAGMA pragma_name;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers

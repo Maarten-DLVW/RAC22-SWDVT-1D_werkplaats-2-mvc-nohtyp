@@ -177,7 +177,7 @@ def null_values_edit(id=None):
     return render_template("null_values_edit.html", **kwargs)
 
 
-# Show null values on page
+# Show data types on page
 @app.route("/data_types")
 def data_types():
     if not g.user:
