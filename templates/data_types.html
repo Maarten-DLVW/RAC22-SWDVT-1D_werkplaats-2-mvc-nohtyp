@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Data types</title>
+    <meta name="description" content="Simple database display"/>
+    <meta name="author" content="Rotterdam Academy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+</head>
+<body>
+<main>
+    <h1>Database onderzoek</h1>
+    <a href="/">Terug</a>
+    <p>Datatype wijzigen van 'medewerker' en 'met pensioen' kolom in 'auteur' tabel:</p>
+    <table>
+        <thead>
+        <tr>
+            {% for column in columns %}
+            <th>{{ column }}</th>
+            {% endfor %}
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row.0 }}</td>
+            <td>{{ row.1 }}</td>
+            <td>{{ row.2 }}</td>
+            <td>{{ row.3 }}</td>
+            <td>{{ row.4 }}</td>
+            <td>{{ row.5 }}</td>
+            <td><a href="/data_types/edit/{{ row.0 }}">Bewerken</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

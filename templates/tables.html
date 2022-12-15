@@ -14,13 +14,14 @@
     <p>Alle tabellen in de database <i>{{ database_file }}</i>:</p>
     <ul>
         {% for table in table_list %}
-        <li><a href="/table_details/{{ table }}">{{ table }}</a></li>
+        <li><a href="/table_details/{{ table }}" class="buttonstyle_blue">{{ table }}</a></li>
         {% endfor %}
     </ul>
     <p>Klik op een van de onderstaande problemen om te kijken welke database rijen te maken hebben met het geselecteerde probleem.</p>
     <ul>
-        <li><a href="/special_characters">Speciale karakters</a></li>
-        <li><a href="/null_values">NULL waarden</a></li>
+        <li><a href="/special_characters" class="buttonstyle_green">Speciale karakters</a></li>
+        <li><a href="/null_values" class="buttonstyle_green">NULL waarden</a></li>
+        <li><a href="/data_types" class="buttonstyle_green">Data types</a></li>
     </ul>
 </main>
 </body>
