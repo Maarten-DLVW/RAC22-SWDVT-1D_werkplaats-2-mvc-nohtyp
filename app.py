@@ -208,11 +208,11 @@ def data_types_edit_handle(id=None):
         qm.editAuthor(id, collaborator)
         return redirect(url_for('data_types'))
 
-@app.route("/SpecifiedQuestion/")
+@app.route("/Spec_quest")
 def specifiedquestion():
     if not g.user:
         return redirect(url_for('login'))
-    rows, column_names = dbm.specifiedid()
+    rows, column_names = qm.specifiedid()
     return render_template("vragenfilter.html",rows = rows, column_names = column_names
     )
 
