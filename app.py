@@ -208,5 +208,13 @@ def data_types_edit_handle(id=None):
         qm.editAuthor(id, collaborator)
         return redirect(url_for('data_types'))
 
+@app.route("/SpecifiedQuestion/")
+def specifiedquestion():
+    if not g.user:
+        return redirect(url_for('login'))
+    rows, column_names = dbm.specifiedid()
+    return render_template("vragenfilter.html",rows = rows, column_names = column_names
+    )
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

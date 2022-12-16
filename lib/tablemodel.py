@@ -27,3 +27,13 @@ class DatabaseModel:
 
         # Note that this method returns 2 variables!
         return table_content, table_headers
+
+    def specifiedid(self):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT * FROM vragen WHERE `auteurs` BETWEEN 1 and 50;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+        return table_headers, table_content
+
+  
