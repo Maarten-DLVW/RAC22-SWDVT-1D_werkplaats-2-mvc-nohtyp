@@ -208,5 +208,14 @@ def data_types_edit_handle(id=None):
         qm.editAuthor(id, collaborator)
         return redirect(url_for('data_types'))
 
+@app.route("/foute_leerdoelen")
+def foute_leerdoelen():
+    if not g.user:
+        return redirect(url_for('login'))
+    rows, column_names = qm.getWrongGoals()
+    return render_template(
+        "foute_leerdoelen.html", rows=rows, columns=column_names
+    )
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

@@ -72,3 +72,12 @@ class QuestionModel:
         cursor = conn.cursor()
         cursor.execute(f'UPDATE auteurs SET medewerker = ? WHERE id = ?', (collaborator, id))
         conn.commit()
+
+    # Get all faulty goals from db
+    def getWrongGoals(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f'SELECT * FROM vragen WHERE leerdoel NOT IN (SELECT id FROM leerdoelen);')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
