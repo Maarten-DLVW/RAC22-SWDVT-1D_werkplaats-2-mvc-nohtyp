@@ -217,5 +217,12 @@ def foute_leerdoelen():
         "foute_leerdoelen.html", rows=rows, columns=column_names
     )
 
+@app.route("/foute_leerdoelen/edit/<id>")
+def foute_leerdoelen_edit(id=None):
+    if not g.user:
+        return redirect(url_for('login'))
+
+    return render_template("foute_leerdoelen_edit.html", id=id)
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

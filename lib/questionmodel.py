@@ -81,3 +81,10 @@ class QuestionModel:
         table_content = cursor.fetchall()
 
         return table_content, table_headers
+
+    # Edit faulty goal
+    def editWrongGoals(self, id, collaborator):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'UPDATE vragen SET leerdoel = ? WHERE id = ?;', (collaborator, id))
+        conn.commit()
