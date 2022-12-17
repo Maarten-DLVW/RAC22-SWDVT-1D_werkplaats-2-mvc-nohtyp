@@ -212,8 +212,32 @@ def data_types_edit_handle(id=None):
 def specifiedquestion():
     if not g.user:
         return redirect(url_for('login'))
-    rows, column_names = qm.specifiedid()
+    rows, column_names = qm.allid()
     return render_template("vragenfilter.html",rows = rows, column_names = column_names
+    )
+
+@app.route("/Spec_quest/1")
+def id1tm35():
+    if not g.user:
+        return redirect(url_for('login'))
+    rows, column_names = qm.specifiedid1()
+    return render_template("vragenfilter_specifiek1.html",rows = rows, column_names = column_names
+    )
+
+@app.route("/Spec_quest/2")
+def id35tm70():
+    if not g.user:
+        return redirect(url_for('login'))
+    rows, column_names = qm.specifiedid2()
+    return render_template("vragenfilter_specifiek1.html",rows = rows, column_names = column_names
+    )
+
+@app.route("/Spec_quest/3")
+def id70tm95():
+    if not g.user:
+        return redirect(url_for('login'))
+    rows, column_names = qm.specifiedid3()
+    return render_template("vragenfilter_specifiek1.html",rows = rows, column_names = column_names
     )
 
 if __name__ == "__main__":

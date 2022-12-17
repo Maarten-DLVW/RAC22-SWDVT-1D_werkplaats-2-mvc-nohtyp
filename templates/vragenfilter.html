@@ -10,12 +10,13 @@
 </head>
 <body>
 <main>
-    <h1>Database onderzoek</h1>
-    <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
+    <h1>Alle vragen</h1>
+    <a href="/">Terug</a>
+    <p> Kies hieronder de rijen die u wilt zien tussen bepaalde waardes: <b>{{ table_name }}</b>:</p>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary">ID 0 t/m 20 </button>
-        <button type="button" class="btn btn-primary">ID 20 t/m 40</button>
-        <button type="button" class="btn btn-primary">ID 40 t/m 60</button>
+        <li><a href="/Spec_quest/1" class="buttonstyle_green">ID 1 T/M 35</a></li>
+        <li><a href="/Spec_quest/2" class="buttonstyle_green">ID 35 T/M 70</a></li>
+        <li><a href="/Spec_quest/3" class="buttonstyle_green">ID 70 T/M 95</a></li>
       </div>
     <table>
         <thead>

@@ -73,10 +73,37 @@ class QuestionModel:
         cursor.execute(f'UPDATE auteurs SET medewerker = ? WHERE id = ?', (collaborator, id))
         conn.commit()
 
-    def specifiedid(self):
+    def allid(self):
         conn = sqlite3.connect(self.database_file)
         cursor = conn.cursor()
         cursor.execute(f'SELECT id, vraag FROM vragen;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
+
+    def specifiedid1(self):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT * FROM vragen WHERE id BETWEEN 1 and 35;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
+
+    def specifiedid2(self):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT * FROM vragen WHERE id BETWEEN 35 and 70;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
+
+    def specifiedid3(self):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT * FROM vragen WHERE id BETWEEN 70 and 95;')
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()
 
