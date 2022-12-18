@@ -223,9 +223,19 @@ def foute_leerdoelen():
 def foute_leerdoelen_edit(id=None):
     if not g.user:
         return redirect(url_for('login'))
-    
     listofgoalID = qm.getAllGoalID()
     return render_template("foute_leerdoelen_edit.html", id=id, leerdoelen=listofgoalID)
+
+@app.route("/foute_leerdoelen/edit/handle/<id>", methods=['GET', 'POST'])
+def foute_leerdoelen_edit_handle(id=None):
+    if not g.user:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        id = request.form['id']
+        collaborator = request.form['collaborator']
+        qm.editWrongGoals(id, collaborator)
+        return redirect(url_for('foute_leerdoelen'))
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
