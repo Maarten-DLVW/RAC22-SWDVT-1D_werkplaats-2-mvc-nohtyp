@@ -95,5 +95,5 @@ class QuestionModel:
         cur_ex = cursor.execute(f'SELECT id FROM leerdoelen;')
         empty_list = []
         for x in cur_ex:
-            empty_list.append(x)
+            empty_list.append(x[0])
         return empty_list
