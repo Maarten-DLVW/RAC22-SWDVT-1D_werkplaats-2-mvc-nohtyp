@@ -88,3 +88,12 @@ class QuestionModel:
         cursor = conn.cursor()
         cursor.execute(f'UPDATE vragen SET leerdoel = ? WHERE id = ?;', (collaborator, id))
         conn.commit()
+
+    # Get goal IDs
+    def getAllGoalID(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cur_ex = cursor.execute(f'SELECT id FROM leerdoelen;')
+        empty_list = []
+        for x in cur_ex:
+            empty_list.append(x)
+        return empty_list

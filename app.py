@@ -208,6 +208,7 @@ def data_types_edit_handle(id=None):
         qm.editAuthor(id, collaborator)
         return redirect(url_for('data_types'))
 
+# Show wrong goals on a page
 @app.route("/foute_leerdoelen")
 def foute_leerdoelen():
     if not g.user:
@@ -217,12 +218,14 @@ def foute_leerdoelen():
         "foute_leerdoelen.html", rows=rows, columns=column_names
     )
 
+# Let the user edit goals
 @app.route("/foute_leerdoelen/edit/<id>")
 def foute_leerdoelen_edit(id=None):
     if not g.user:
         return redirect(url_for('login'))
-
-    return render_template("foute_leerdoelen_edit.html", id=id)
+    
+    listofgoalID = qm.getAllGoalID()
+    return render_template("foute_leerdoelen_edit.html", id=id, leerdoelen=listofgoalID)
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
