@@ -97,3 +97,40 @@ class QuestionModel:
         for x in cur_ex:
             empty_list.append(x[0])
         return empty_list
+
+
+    def allid(self):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT id, vraag FROM vragen;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
+
+    def specifiedid1(self):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT * FROM vragen WHERE id BETWEEN 1 and 35;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
+
+    def specifiedid2(self):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT * FROM vragen WHERE id BETWEEN 35 and 70;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers
+
+    def specifiedid3(self):
+        conn = sqlite3.connect(self.database_file)
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT * FROM vragen WHERE id BETWEEN 70 and 95;')
+        table_headers = [column_name[0] for column_name in cursor.description]
+        table_content = cursor.fetchall()
+
+        return table_content, table_headers

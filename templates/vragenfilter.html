@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Database displayer</title>
+    <meta name="description" content="Simple database display"/>
+    <meta name="author" content="Rotterdam Academy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+</head>
+<body>
+<main>
+    <h1>Alle vragen</h1>
+    <a href="/">Terug</a>
+    <p> Kies hieronder de rijen die u wilt zien tussen bepaalde waardes: <b>{{ table_name }}</b>:</p>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <li><a href="/Spec_quest/1" class="buttonstyle_green">ID 1 T/M 35</a></li>
+        <li><a href="/Spec_quest/2" class="buttonstyle_green">ID 35 T/M 70</a></li>
+        <li><a href="/Spec_quest/3" class="buttonstyle_green">ID 70 T/M 95</a></li>
+      </div>
+    <table>
+        <thead>
+        <tr>
+            {% for column in columns %}
+            <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr>
+            {% for field in row %}
+            <td>{{ field }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</main>
+</body>
+
+</html>
