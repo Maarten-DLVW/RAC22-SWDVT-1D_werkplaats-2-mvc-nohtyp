@@ -92,10 +92,10 @@ class QuestionModel:
     # Get goal IDs
     def getAllGoalID(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cur_ex = cursor.execute(f'SELECT id FROM leerdoelen;')
+        cur_ex = cursor.execute(f'SELECT * FROM leerdoelen;')
         empty_list = []
         for x in cur_ex:
-            empty_list.append(x[0])
+            empty_list.append(x)
         return empty_list
 
 
