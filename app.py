@@ -188,14 +188,14 @@ def special_characters_export():
     csv += "\n"
     for row in rows:
         for field in row:
-            csv += f"{str(field).replace(';', '\;')};"
+            csv += f"{field};"
         csv+= "\n"    
 
     return Response(
         csv,
         mimetype="text/csv",
         headers={"Content-disposition":
-                 "attachment; filename=special_characters_export.csv"})
+                 "attachment; filename=null_values_export.csv"})
 
 
 # Show data types on page
