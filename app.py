@@ -2,7 +2,7 @@ import os.path
 import sys
 import sqlite3
 
-from flask import  ( Flask, g , redirect, render_template, request, session, url_for )
+from flask import  ( Flask, g , redirect, render_template, request, session, url_for, Response )
     
 
 from lib.tablemodel import DatabaseModel
@@ -175,6 +175,27 @@ def null_values_edit(id=None):
         "author": author
     }
     return render_template("null_values_edit.html", **kwargs)
+
+#export null values
+@app.route("/null_values/export")
+def special_characters_export():
+    if not g.user:
+        return redirect(url_for('login'))
+    rows, column_names = qm.getAllNullValues()
+    csv = ""
+    for column in column_names:
+        csv += f"{column};"
+    csv += "\n"
+    for row in rows:
+        for field in row:
+            csv += f"{str(field).replace(';', '\;')};"
+        csv+= "\n"    
+
+    return Response(
+        csv,
+        mimetype="text/csv",
+        headers={"Content-disposition":
+                 "attachment; filename=special_characters_export.csv"})
 
 
 # Show data types on page
