@@ -10,7 +10,7 @@ class QuestionModel:
     # Select all questions with questions with special characters from db
     def getAllSpecialCharacters(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f'SELECT * FROM vragen WHERE vraag LIKE "%<br>%" OR vraag LIKE "%&nbsp;%";')
+        cursor.execute(f'SELECT * FROM vragen WHERE vraag LIKE "%<br>%" OR vraag LIKE "%&nbsp;%" OR vraag LIKE "%<p>%" OR vraag LIKE "%<script>%" OR vraag LIKE "%<a>%";')
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()
 
