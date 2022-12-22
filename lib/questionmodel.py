@@ -10,7 +10,7 @@ class QuestionModel:
     # Select all questions with questions with special characters from db
     def getAllSpecialCharacters(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f'SELECT * FROM vragen WHERE vraag LIKE "%<br>%" OR vraag LIKE "%&nbsp;%";')
+        cursor.execute(f'SELECT * FROM vragen WHERE vraag LIKE "%<br>%" OR vraag LIKE "%&nbsp;%" OR vraag LIKE "%<p>%" OR vraag LIKE "%<script>%" OR vraag LIKE "%<a>%";')
         table_headers = [column_name[0] for column_name in cursor.description]
         table_content = cursor.fetchall()
 
@@ -92,10 +92,10 @@ class QuestionModel:
     # Get goal IDs
     def getAllGoalID(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cur_ex = cursor.execute(f'SELECT id FROM leerdoelen;')
+        cur_ex = cursor.execute(f'SELECT * FROM leerdoelen;')
         empty_list = []
         for x in cur_ex:
-            empty_list.append(x[0])
+            empty_list.append(x)
         return empty_list
 
 

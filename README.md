@@ -13,3 +13,9 @@ Stap 7: Klik vervolgens op 'Source code (zip)'.<br />
 Stap 8: Pak het .zip bestand uit.<br />
 Stap 9: Dubbelklik op app.py<br />
 Stap 10: Typ 127.0.0.1:81 in je internetbrowser.
+
+# Inloggegevens
+Kenan: Gebruikersnaam: Kenan. Wachtwoord: KenanWW<br />
+Ruben: Gebruikersnaam: Ruben. Wachtwoord: RubenWW<br />
+Maarten: Gebruikersnaam: Maarten. Wachtwoord: MaartenWW<br />
+Aisha: Gebruikersnaam: Aisha. Wachtwoord: AishaWW

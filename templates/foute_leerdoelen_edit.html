@@ -24,7 +24,7 @@
         <select name="collaborator" id="collaborator">
             <option value="">Kies een waarde</option>
             {% for id in leerdoelen %}
-            <option value="{{ id }}"> {{ id }}</option>
+            <option value="{{ id[0] }}"> {{ id[0] }}, {{ id[1] }}</option>
             {% endfor %}
         </select><br />
         <input type="submit" value="Opslaan" />
