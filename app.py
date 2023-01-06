@@ -46,6 +46,11 @@ def before_request():
             g.user = user
 
 
+@app.route('/uitloggen')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
 
