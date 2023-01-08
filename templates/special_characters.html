@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         {% for row in rows %}
-        <tr>
+        <tr class="row displayNone">
             <td>{{ row.0 }}</td>
             <td>{{ row.1 }}</td>
             <td>{{ row.2 }}</td>
@@ -30,6 +30,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <button class="loadMoreBttn buttonstyle_blue">Meer laden</button>
     {% include "footer.html" %}
 </main>
 </body>

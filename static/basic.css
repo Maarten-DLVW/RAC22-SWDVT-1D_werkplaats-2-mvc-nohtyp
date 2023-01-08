@@ -170,3 +170,7 @@ section>section {
 	position:relative;
 	top:1px;
 }
+
+.displayNone {
+    display: none;
+}
