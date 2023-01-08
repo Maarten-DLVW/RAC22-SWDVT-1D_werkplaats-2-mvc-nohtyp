@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
     <title>Data types</title>
-    <meta name="description" content="Simple database display"/>
-    <meta name="author" content="Rotterdam Academy"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+    {% include "head.html" %}
 </head>
 <body>
 <main>
@@ -31,11 +27,12 @@
             <td>{{ row.3 }}</td>
             <td>{{ row.4 }}</td>
             <td>{{ row.5 }}</td>
-            <td><a href="/data_types/edit/{{ row.0 }}" clas="buttonstyle_blue">Bewerken</a></td>
+            <td><a href="/data_types/edit/{{ row.0 }}" class="buttonstyle_blue">Bewerken</a></td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
+    {% include "footer.html" %}
 </main>
 </body>
 </html>

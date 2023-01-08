@@ -45,10 +45,12 @@ def before_request():
             user = [x for x in users if x.id == session['user_id']][0]
             g.user = user
 
-
+## Logout route
 @app.route('/uitloggen')
 def logout():
+    ## Remove login sessions to log user out
     session.clear()
+    ## Redirect user to login page
     return redirect(url_for('login'))
 
 @app.route('/login/', methods=['GET', 'POST'])
