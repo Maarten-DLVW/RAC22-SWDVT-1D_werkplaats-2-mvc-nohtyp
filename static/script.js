@@ -1,3 +1,4 @@
+//load more bttn
 $(document).ready(function() {
     if ($(".data_types_page, .null_values_page, .special_characters_page").length > 0) {
         var visibleRows = 0;

@@ -171,6 +171,11 @@ section>section {
 	top:1px;
 }
 
+.center {
+    margin: 0 auto;
+    display: block;
+}
+
 .displayNone {
     display: none;
 }
