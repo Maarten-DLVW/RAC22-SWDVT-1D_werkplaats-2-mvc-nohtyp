@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <style>
+        table, th, td {
+          border: 1px solid white;
+          border-collapse: collapse;
+        }
+        th, td {
+          background-color: #96D4D4;
+        }
+        </style>
     <meta charset="utf-8"/>
     <title>Database displayer</title>
     <meta name="description" content="Simple database display"/>
@@ -10,14 +19,17 @@
 </head>
 <body style="background-color:darkcyan;"></body>
 <main>
+
+    
     <h1>Database onderzoek</h1>
+
     <a href="/uitloggen">Uitloggen</a>
-    <p>Alle tabellen in de database <i>{{ database_file }}</i>:</p>
+    <p>Alle tabellen in de database:</p>
     <ul>
         {% for table in table_list %}
         <li><a href="/table_details/{{ table }}" class="buttonstyle_blue">{{ table }}</a></li>
         {% endfor %}
-    </ul>
+    
     <p>Klik op een van de onderstaande problemen om te kijken welke database rijen te maken hebben met het geselecteerde probleem.</p>
     <ul>
         <li><a href="/special_characters" class="buttonstyle_green">Speciale karakters</a></li>
